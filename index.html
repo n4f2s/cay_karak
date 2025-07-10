@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاي كرك</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-dark: #2C2C2C;
+            --accent-brown: #8B4513;
+            --light-cream: #FDF8F0;
+            --warm-white: #FEFEFE;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #E5E5E5;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary-gold) 0%, #F4E680 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, #444444 100%);
+        }
+        
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, var(--light-cream) 0%, var(--warm-white) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px var(--shadow-medium);
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="60" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header h1 i {
+            color: #FFD700;
+            margin-left: 0.5rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Navigation Tabs */
+        .menu-tabs {
+            background: var(--warm-white);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            box-shadow: 0 2px 10px var(--shadow-light);
+            border-bottom: 3px solid var(--primary-gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: 2px solid var(--border-light);
+            color: var(--text-light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .tab-btn:hover {
+            border-color: var(--primary-gold);
+            color: var(--text-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .tab-btn:hover::before {
+            left: 0;
+        }
+        
+        .tab-btn.active {
+            background: var(--gradient-primary);
+            border-color: var(--primary-gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .tab-btn.active::before {
+            left: 0;
+        }
+        
+        /* Menu Sections */
+        .menu-section {
+            display: none;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .menu-section.active {
+            display: block;
+        }
+        
+        /* Menu Grid Layout */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .menu-category {
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+        }
+        
+        .menu-category h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .menu-category h2 i {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+        }
+        
+        /* Individual Menu Item Cards */
+        .menu-item {
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+            border-color: var(--primary-gold);
+        }
+        
+        .menu-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .item-name {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-dark);
+            flex-grow: 1;
+        }
+        
+        /* Product Images */
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-left: 1rem;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--light-cream);
+        }
+        
+        .product-image.placeholder {
+            background: linear-gradient(45deg, var(--light-cream) 25%, var(--border-light) 25%, var(--border-light) 50%, var(--light-cream) 50%, var(--light-cream) 75%, var(--border-light) 75%, var(--border-light));
+            background-size: 8px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 24px;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-gold);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Image Modal */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .image-modal.show {
+            display: flex;
+        }
+        
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Quantity Controls */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light-cream);
+            padding: 0.25rem;
+            border-radius: 25px;
+            border: 1px solid var(--border-light);
+        }
+        
+        .quantity-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+        
+        .quantity-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+        
+        .quantity-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .quantity-input {
+            width: 45px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-dark);
+            outline: none;
+        }
+        
+        /* Order Summary */
+        .order-summary {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 90%;
+            max-width: 500px;
+            background: var(--warm-white);
+            padding: 1rem;
+            box-shadow: 0 -8px 30px var(--shadow-medium);
+            border-top: 3px solid var(--primary-gold);
+            border-radius: 16px 16px 0 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
+            max-height: 40vh;
+        }
+        
+        .order-summary.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+        
+        .order-header h3 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .order-header h3 i {
+            color: var(--primary-gold);
+        }
+        
+        #closeOrder {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0.25rem;
+            border-radius: 50%;
+        }
+        
+        #closeOrder:hover {
+            color: var(--accent-brown);
+            background: var(--light-cream);
+        }
+        
+        .order-items {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 0.75rem;
+            padding: 0 0.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-btn:active {
+            transform: translateY(0);
+        }
+        
+        .no-items {
+            text-align: center;
+            color: var(--text-light);
+            padding: 2rem;
+            font-style: italic;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light-cream);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            border: 1px solid var(--border-light);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-brown);
+        }
+        
+        /* Modern Interactive Elements */
+        .floating-action-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 1500;
+        }
+        
+        .fab-main {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .fab-main:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .fab-options {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        
+        .fab-options.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .fab-option {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--warm-white);
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+        
+        .fab-option:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Parallax Header */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .parallax-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .parallax-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .parallax-element:nth-child(3) {
+            bottom: 20%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Glass morphism cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Interactive hover effects */
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .menu-item:hover::before {
+            left: 100%;
+        }
+        
+        /* Pulse animation for active elements */
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .8;
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Modern scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Skeleton loading for menu items */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        
+        /* Modern tooltip */
+        .tooltip {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-dark);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        /* Modern switch toggle */
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border-light);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            transition: 0.4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        input:checked + .slider {
+            background: var(--gradient-primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Modern progress ring */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring__circle {
+            stroke: var(--primary-gold);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        /* Micro-interactions */
+        .micro-bounce {
+            transition: transform 0.2s ease;
+        }
+        
+        .micro-bounce:active {
+            transform: scale(0.98);
+        }
+        
+        /* Modern card stack effect */
+        .card-stack {
+            position: relative;
+        }
+        
+        .card-stack::before,
+        .card-stack::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--warm-white);
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .card-stack::before {
+            transform: translate(2px, 2px);
+        }
+        
+        .card-stack::after {
+            transform: translate(4px, 4px);
+            opacity: 0.25;
+        }
+        
+        /* Enhanced Mobile-First Responsive Design */
+        
+        /* Mobile Touch Improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .menu-item {
+                padding: 1.5rem 1rem;
+                margin: 0.5rem 0;
+                background: var(--warm-white);
+                border-radius: 12px;
+                box-shadow: 0 2px 8px var(--shadow-light);
+            }
+            
+            .quantity-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+            
+            .tab-btn {
+                min-height: 48px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mobile Navigation */
+        .mobile-header-actions {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--warm-white);
+            padding: 1rem;
+            border-top: 2px solid var(--primary-gold);
+            z-index: 3000;
+            box-shadow: 0 -4px 20px var(--shadow-medium);
+        }
+        
+        .mobile-action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .mobile-action-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-height: 80px;
+        }
+        
+        .mobile-action-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .mobile-action-btn i {
+            font-size: 1.5rem;
+        }
+        
+        /* Swipe Gestures */
+        .swipe-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swipe-indicator {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .swipe-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .swipe-dot.active {
+            background: var(--primary-gold);
+            transform: scale(1.2);
+        }
+        
+        /* Mobile Menu Categories */
+        .mobile-category-scroll {
+            display: none;
+        }
+        
+        /* Sticky Add to Cart */
+        .sticky-cart {
+            position: fixed;
+            bottom: 80px;
+            left: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            z-index: 2500;
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-cart.show {
+            display: flex;
+            animation: slideUpBounce 0.5s ease;
+        }
+        
+        @keyframes slideUpBounce {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            70% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Pull to Refresh */
+        .pull-to-refresh {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .pull-to-refresh.active {
+            top: 20px;
+        }
+        
+        /* Mobile Responsive Breakpoints */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 160px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .menu-tabs {
+                padding: 1rem 0.5rem;
+                position: sticky;
+                top: 0;
+                background: var(--warm-white);
+                border-bottom: 3px solid var(--primary-gold);
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .menu-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .tab-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 140px;
+                flex-shrink: 0;
+            }
+            
+            .menu-section {
+                padding: 0.5rem;
+            }
+            
+            .menu-category {
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 12px;
+            }
+            
+            .menu-category h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .menu-item {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border-light);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .product-image {
+                width: 50px;
+                height: 50px;
+                flex-shrink: 0;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .quantity-control {
+                gap: 0.75rem;
+                padding: 0.5rem;
+            }
+            
+            .quantity-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .quantity-input {
+                width: 50px;
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+            
+            .order-summary {
+                width: 95%;
+                max-width: none;
+                padding: 0.75rem;
+                border-radius: 16px 16px 0 0;
+                max-height: 50vh;
+            }
+            
+            .whatsapp-btn {
+                padding: 1.25rem;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+            
+            .mobile-header-actions {
+                display: block;
+            }
+            
+            .floating-action-menu {
+                display: none;
+            }
+            
+            .fab-main {
+                bottom: 90px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-tabs {
+                padding: 0.75rem 0.5rem;
+                gap: 0.25rem;
+            }
+            
+            .tab-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+                min-width: 120px;
+            }
+            
+            .menu-category {
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .menu-category h2 {
+                font-size: 1.1rem;
+            }
+            
+            .menu-item {
+                padding: 1rem 0.5rem;
+                border-radius: 8px;
+                margin-bottom: 0.5rem;
+                background: rgba(255, 255, 255, 0.5);
+            }
+            
+            .item-name {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .quantity-control {
+                gap: 0.5rem;
+                padding: 0.25rem;
+            }
+            
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+            
+            .quantity-input {
+                width: 45px;
+                font-size: 0.9rem;
+            }
+            
+            .order-summary {
+                padding: 0.75rem;
+                max-height: 60vh;
+            }
+            
+            .order-header h3 {
+                font-size: 1rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .mobile-action-btn {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-action-btn i {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Hide specific dropdown only */
+        .goog-te-combo,
+        .skiptranslate,
+        [id*="google_translate"],
+        [class*="google_translate"],
+        body > select:not([class]):not([id]):not([name]),
+        select[style*="padding: 0.5rem"],
+        select[style*="border: 2px solid"],
+        select[style*="border-radius: 20px"],
+        select[style*="margin: 0.5rem"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+        
+        /* Ultra-small screens */
+        @media (max-width: 360px) {
+            .tab-btn {
+                min-width: 100px;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .menu-category {
+                padding: 0.5rem;
+            }
+            
+            .menu-item {
+                padding: 0.75rem 0.25rem;
+            }
+            
+            .item-name {
+                font-size: 0.9rem;
+            }
+            
+            .quantity-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+            
+            .quantity-input {
+                width: 40px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <!-- Modern Header with Parallax -->
+    <header class="parallax-container">
+        <div class="parallax-element"></div>
+        <div class="parallax-element"></div>
+        <div class="parallax-element"></div>
+        <h1 class="tooltip micro-bounce" data-tooltip="مطعم شاي كرك الأصيل"><i class="fas fa-mug-hot pulse"></i> مطعم شاي كرك</h1>
+        <p>أجود أنواع الشاي والقهوة والمأكولات</p>
+    </header>
+    
+    <div class="menu-tabs">
+        <button class="tab-btn active" data-tab="hot-drinks">المشروبات الساخنة</button>
+        <button class="tab-btn" data-tab="cold-drinks">المشروبات الباردة</button>
+        <button class="tab-btn" data-tab="sandwiches">السندويشات</button>
+        <button class="tab-btn" data-tab="desserts">الحلويات</button>
+        <button class="tab-btn" data-tab="coffee">القهوة</button>
+    </div>
+    
+    <!-- Hot Drinks Section -->
+    <div class="menu-section active" id="hot-drinks">
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-fire pulse"></i> شاي كرك</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01.png" alt="شاي كرك صغير" class="product-image">
+                <span class="item-name">شاي كرك صغير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي كرك صغير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي كرك صغير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01.png" alt="شاي كرك وسط" class="product-image">
+                <span class="item-name">شاي كرك وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي كرك وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي كرك وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01.png" alt="شاي كرك كبير" class="product-image">
+                <span class="item-name">شاي كرك كبير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي كرك كبير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي كرك كبير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01.png" alt="عرض سمبوسة وكرك" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                <span class="item-name">عرض سمبوسة وكرك</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عرض سمبوسة وكرك">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عرض سمبوسة وكرك">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (2).png" alt="براد كرك" class="product-image">
+                <span class="item-name">براد كرك</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="براد كرك">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="براد كرك">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (3).png" alt="كرك بارد" class="product-image">
+                <span class="item-name">كرك بارد</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كرك بارد">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كرك بارد">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (4).png" alt="خلطة كرك" class="product-image">
+                <span class="item-name">خلطة كرك</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="خلطة كرك">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="خلطة كرك">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (5).png" alt="براد قهوة عربية 1.5" class="product-image">
+                <span class="item-name">براد قهوة عربية 1.5</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="براد قهوة عربية 1.5">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="براد قهوة عربية 1.5">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (6).png" alt="براد كرك 15" class="product-image">
+                <span class="item-name">براد كرك 15</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="براد كرك 15">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="براد كرك 15">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (7).png" alt="قهوة كرك وسط" class="product-image">
+                <span class="item-name">قهوة كرك وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة كرك وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة كرك وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (8).png" alt="علبة ابو قوس" class="product-image">
+                <span class="item-name">علبة ابو قوس</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="علبة ابو قوس">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="علبة ابو قوس">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (9).png" alt="شاي الكابوس" class="product-image">
+                <span class="item-name">شاي الكابوس</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي الكابوس">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي الكابوس">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-coffee pulse"></i> شاي عادي وقهوة</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (10).png" alt="شاي عادي وسط" class="product-image">
+                <span class="item-name">شاي عادي وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي عادي وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي عادي وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (11).png" alt="شاي عادي صغير" class="product-image">
+                <span class="item-name">شاي عادي صغير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي عادي صغير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي عادي صغير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (12).png" alt="شاي عادي كبير" class="product-image">
+                <span class="item-name">شاي عادي كبير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي عادي كبير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي عادي كبير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (13).png" alt="بالهيل كبير قهوة عادي" class="product-image">
+                <span class="item-name">بالهيل كبير قهوة عادي</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="بالهيل كبير قهوة عادي">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="بالهيل كبير قهوة عادي">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (14).png" alt="قهوة عادي بالهيل وسط" class="product-image">
+                <span class="item-name">قهوة عادي بالهيل وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة عادي بالهيل وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة عادي بالهيل وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (15).png" alt="نسكافيه" class="product-image">
+                <span class="item-name">نسكافيه</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="نسكافيه">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="نسكافيه">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (16).png" alt="هوت شوكليت كبير" class="product-image">
+                <span class="item-name">هوت شوكليت كبير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="هوت شوكليت كبير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="هوت شوكليت كبير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (17).png" alt="هوت شوكليت وسط" class="product-image">
+                <span class="item-name">هوت شوكليت وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="هوت شوكليت وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="هوت شوكليت وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (18).png" alt="سحلب" class="product-image">
+                <span class="item-name">سحلب</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="سحلب">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="سحلب">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (19).png" alt="قهوة تركي وسط" class="product-image">
+                <span class="item-name">قهوة تركي وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة تركي وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة تركي وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (20).png" alt="قهوة تركي صغير" class="product-image">
+                <span class="item-name">قهوة تركي صغير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة تركي صغير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة تركي صغير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (21).png" alt="قهوة خليجي عربية" class="product-image">
+                <span class="item-name">قهوة خليجي عربية</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة خليجي عربية">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة خليجي عربية">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (22).png" alt="شاي ياسمين وسط" class="product-image">
+                <span class="item-name">شاي ياسمين وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شاي ياسمين وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شاي ياسمين وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (23).png" alt="قهوة عادي بالهيل صغير" class="product-image">
+                <span class="item-name">قهوة عادي بالهيل صغير</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قهوة عادي بالهيل صغير">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قهوة عادي بالهيل صغير">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (24).png" alt="براد شاهی" class="product-image">
+                <span class="item-name">براد شاهی</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="براد شاهی">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="براد شاهی">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cold Drinks Section -->
+    <div class="menu-section" id="cold-drinks">
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-glass-water pulse"></i> المشروبات الباردة</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (25).png" alt="ماء" class="product-image">
+                <span class="item-name">ماء</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ماء">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ماء">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (26).png" alt="عصير مانجو طبيعي" class="product-image">
+                <span class="item-name">عصير مانجو طبيعي</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مانجو طبيعي">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مانجو طبيعي">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (27).png" alt="ليموناتا" class="product-image">
+                <span class="item-name">ليموناتا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ليموناتا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ليموناتا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (28).png" alt="عصير مانجو جاهز" class="product-image">
+                <span class="item-name">عصير مانجو جاهز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مانجو جاهز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مانجو جاهز">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (29).png" alt="عصير جوافة جاهز" class="product-image">
+                <span class="item-name">عصير جوافة جاهز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير جوافة جاهز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير جوافة جاهز">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (30).png" alt="غوريلا" class="product-image">
+                <span class="item-name">غوريلا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="غوريلا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="غوريلا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (31).png" alt="عصير مندرين كولا" class="product-image">
+                <span class="item-name">عصير مندرين كولا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مندرين كولا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مندرين كولا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (32).png" alt="عصير برتقال جاهز" class="product-image">
+                <span class="item-name">عصير برتقال جاهز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير برتقال جاهز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير برتقال جاهز">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (33).png" alt="عصير مشكل جاهز" class="product-image">
+                <span class="item-name">عصير مشكل جاهز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مشكل جاهز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مشكل جاهز">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (34).png" alt="عصير سيرينا برتقال" class="product-image">
+                <span class="item-name">عصير سيرينا برتقال</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير سيرينا برتقال">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير سيرينا برتقال">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (35).png" alt="عصير مندرين برتقال" class="product-image">
+                <span class="item-name">عصير مندرين برتقال</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مندرين برتقال">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مندرين برتقال">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (36).png" alt="عصير مندرين لیمونن" class="product-image">
+                <span class="item-name">عصير مندرين لیمونن</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير مندرين لیمونن">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير مندرين لیمونن">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (37).png" alt="عصير سيرينا مانجو" class="product-image">
+                <span class="item-name">عصير سيرينا مانجو</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير سيرينا مانجو">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير سيرينا مانجو">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (38).png" alt="عصير سيرينا أناناس" class="product-image">
+                <span class="item-name">عصير سيرينا أناناس</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير سيرينا أناناس">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير سيرينا أناناس">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (39).png" alt="عصير سيرينا خوخ" class="product-image">
+                <span class="item-name">عصير سيرينا خوخ</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="عصير سيرينا خوخ">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="عصير سيرينا خوخ">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sandwiches Section -->
+    <div class="menu-section" id="sandwiches">
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-bread-slice pulse"></i> السندويشات</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy.png" alt="شباتي بيض" class="product-image">
+                <span class="item-name">شباتي بيض</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي بيض">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي بيض">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (40).png" alt="شباتي جبنة" class="product-image">
+                <span class="item-name">شباتي جبنة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي جبنة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي جبنة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (41).png" alt="شباتي سادة" class="product-image">
+                <span class="item-name">شباتي سادة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي سادة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي سادة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (42).png" alt="شباتي ميكس عادي بدون بيض" class="product-image">
+                <span class="item-name">شباتي ميكس عادي بدون بيض</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي ميكس عادي بدون بيض">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي ميكس عادي بدون بيض">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (43).png" alt="شباتي فاهيتا" class="product-image">
+                <span class="item-name">شباتي فاهيتا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي فاهيتا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي فاهيتا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (44).png" alt="شباتي شيش طاووق" class="product-image">
+                <span class="item-name">شباتي شيش طاووق</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي شيش طاووق">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي شيش طاووق">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (45).png" alt="شباتي بيض بالجبنه" class="product-image">
+                <span class="item-name">شباتي بيض بالجبنه</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي بيض بالجبنه">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي بيض بالجبنه">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (46).png" alt="شباتي جبنة" class="product-image">
+                <span class="item-name">شباتي جبنة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي جبنة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي جبنة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (47).png" alt="شباب اليكس بالبيض" class="product-image">
+                <span class="item-name">شباب اليكس بالبيض</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباب اليكس بالبيض">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباب اليكس بالبيض">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (48).png" alt="شباتي جبن وعمان" class="product-image">
+                <span class="item-name">شباتي جبن وعمان</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي جبن وعمان">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي جبن وعمان">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (49).png" alt="شباتي بيض بالجبنة وعمان" class="product-image">
+                <span class="item-name">شباتي بيض بالجبنة وعمان</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي بيض بالجبنة وعمان">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي بيض بالجبنة وعمان">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (50).png" alt="شباتي بيض بالشيدر" class="product-image">
+                <span class="item-name">شباتي بيض بالشيدر</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي بيض بالشيدر">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي بيض بالشيدر">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (51).png" alt="با خمري" class="product-image">
+                <span class="item-name">با خمري</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="با خمري">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="با خمري">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (52).png" alt="شباتي نوتيلا" class="product-image">
+                <span class="item-name">شباتي نوتيلا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شباتي نوتيلا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شباتي نوتيلا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (53).png" alt="كيك كوكيز" class="product-image">
+                <span class="item-name">كيك كوكيز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كيك كوكيز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كيك كوكيز">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Desserts Section -->
+    <div class="menu-section" id="desserts">
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-ice-cream pulse"></i> الحلويات</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (54).png" alt="ربع كيلو كنافة" class="product-image">
+                <span class="item-name">ربع كيلو كنافة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ربع كيلو كنافة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ربع كيلو كنافة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (55).png" alt="نصف كيلو كنافة" class="product-image">
+                <span class="item-name">نصف كيلو كنافة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="نصف كيلو كنافة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="نصف كيلو كنافة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (56).png" alt="كيلو كنافة" class="product-image">
+                <span class="item-name">كيلو كنافة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كيلو كنافة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كيلو كنافة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (57).png" alt="كرات شكلاته" class="product-image">
+                <span class="item-name">كرات شكلاته</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كرات شكلاته">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كرات شكلاته">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (58).png" alt="قطعة ليالي لبنان" class="product-image">
+                <span class="item-name">قطعة ليالي لبنان</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="قطعة ليالي لبنان">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="قطعة ليالي لبنان">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (59).png" alt="صحن كنافة" class="product-image">
+                <span class="item-name">صحن كنافة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="صحن كنافة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="صحن كنافة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (60).png" alt="نصف كيلو من تمر" class="product-image">
+                <span class="item-name">نصف كيلو من تمر</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="نصف كيلو من تمر">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="نصف كيلو من تمر">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (61).png" alt="كيلو من تمر" class="product-image">
+                <span class="item-name">كيلو من تمر</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كيلو من تمر">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كيلو من تمر">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (62).png" alt="كيلو صفوف" class="product-image">
+                <span class="item-name">كيلو صفوف</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كيلو صفوف">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كيلو صفوف">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (63).png" alt="نصف كيلو من نشطة" class="product-image">
+                <span class="item-name">نصف كيلو من نشطة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="نصف كيلو من نشطة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="نصف كيلو من نشطة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (64).png" alt="كيلو من قشطه" class="product-image">
+                <span class="item-name">كيلو من قشطه</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كيلو من قشطه">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كيلو من قشطه">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (65).png" alt="ربع كيلو من تمر" class="product-image">
+                <span class="item-name">ربع كيلو من تمر</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ربع كيلو من تمر">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ربع كيلو من تمر">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (66).png" alt="ربع كيلو صفوف" class="product-image">
+                <span class="item-name">ربع كيلو صفوف</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ربع كيلو صفوف">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ربع كيلو صفوف">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (67).png" alt="نصف كيلو صفوف" class="product-image">
+                <span class="item-name">نصف كيلو صفوف</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="نصف كيلو صفوف">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="نصف كيلو صفوف">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (68).png" alt="ربع كيلو من مد قشطه" class="product-image">
+                <span class="item-name">ربع كيلو من مد قشطه</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="ربع كيلو من مد قشطه">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="ربع كيلو من مد قشطه">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Coffee Section -->
+    <div class="menu-section" id="coffee">
+        <div class="menu-category card-stack glass-card">
+            <h2><i class="fas fa-coffee pulse"></i> القهوة</h2>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (69).png" alt="كروسان محشي" class="product-image">
+                <span class="item-name">كروسان محشي</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كروسان محشي">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كروسان محشي">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (70).png" alt="كروسان سادة" class="product-image">
+                <span class="item-name">كروسان سادة</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كروسان سادة">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كروسان سادة">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (71).png" alt="فلات كروسان" class="product-image">
+                <span class="item-name">فلات كروسان</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="فلات كروسان">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="فلات كروسان">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (72).png" alt="امریكانوا دبل" class="product-image">
+                <span class="item-name">امریكانوا دبل</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="امریکانوا دبل">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="امریکانوا دبل">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (73).png" alt="آمریكانو" class="product-image">
+                <span class="item-name">آمریكانو</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="آمریکانو">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="آمریکانو">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (74).png" alt="أكسترا" class="product-image">
+                <span class="item-name">أكسترا</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="أكسترا">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="أكسترا">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (75).png" alt="اسبرسوا دبل" class="product-image">
+                <span class="item-name">اسبرسوا دبل</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="اسبرسوا دبل">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="اسبرسوا دبل">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (76).png" alt="اسبرسوا عادي" class="product-image">
+                <span class="item-name">اسبرسوا عادي</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="اسبرسوا عادي">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="اسبرسوا عادي">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (77).png" alt="كرمل لاتية" class="product-image">
+                <span class="item-name">كرمل لاتية</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كرمل لاتية">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كرمل لاتية">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (78).png" alt="وافل" class="product-image">
+                <span class="item-name">وافل</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="وافل">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="وافل">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (79).png" alt="شوكلا باليمون" class="product-image">
+                <span class="item-name">شوكلا باليمون</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="شوكلا باليمون">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="شوكلا باليمون">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (80).png" alt="سبانش لاتية وسط" class="product-image">
+                <span class="item-name">سبانش لاتية وسط</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="سبانش لاتية وسط">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="سبانش لاتية وسط">+</button>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="Images/kark-01 - Copy (81).png" alt="كوكيز" class="product-image">
+                <span class="item-name">كوكيز</span>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-item="كوكيز">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0">
+                    <button class="quantity-btn plus" data-item="كوكيز">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="order-summary" id="orderSummary">
+        <div class="order-header">
+            <h3><i class="fas fa-shopping-cart"></i> طلباتك</h3>
+            <button id="closeOrder"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="order-items" id="orderItems">
+            <div class="no-items">لا توجد عناصر في الطلب</div>
+        </div>
+        <button class="whatsapp-btn" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
+        </button>
+    </div>
+    
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-header-actions" id="mobileActions">
+        <div class="mobile-action-grid">
+            <button class="mobile-action-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </button>
+            <button class="mobile-action-btn" onclick="document.getElementById('whatsappBtn').click()">
+                <i class="fab fa-whatsapp"></i>
+                <span>طلب</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <button class="close-modal" onclick="closeImageModal()"><i class="fas fa-times"></i></button>
+        <img id="modalImage" src="" alt="">
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Modern Interactive Features
+            
+            // Scroll Progress Indicator
+            function updateScrollIndicator() {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollProgress = (scrollTop / scrollHeight) * 100;
+                document.getElementById('scrollIndicator').style.width = scrollProgress + '%';
+            }
+            
+            window.addEventListener('scroll', updateScrollIndicator);
+            
+            // Floating Action Menu
+            function createFloatingActionMenu() {
+                const fabContainer = document.createElement('div');
+                fabContainer.className = 'floating-action-menu';
+                
+                fabContainer.innerHTML = `
+                    <div class="fab-options" id="fabOptions">
+                        <button class="fab-option tooltip" data-tooltip="العودة للأعلى" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></button>
+                        <button class="fab-option tooltip" data-tooltip="الواتساب" onclick="document.getElementById('whatsappBtn').click()"><i class="fab fa-whatsapp"></i></button>
+                        <button class="fab-option tooltip" data-tooltip="البحث" onclick="document.querySelector('input[placeholder*=\"ابحث\"]').focus()"><i class="fas fa-search"></i></button>
+                        <button class="fab-option tooltip" data-tooltip="مسح الكل" onclick="clearAllItems()"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <button class="fab-main" id="fabMain"><i class="fas fa-plus"></i></button>
+                `;
+                
+                document.body.appendChild(fabContainer);
+                
+                // FAB Toggle
+                document.getElementById('fabMain').addEventListener('click', function() {
+                    const options = document.getElementById('fabOptions');
+                    options.classList.toggle('active');
+                    this.style.transform = options.classList.contains('active') ? 'rotate(45deg)' : 'rotate(0deg)';
+                });
+            }
+            
+            createFloatingActionMenu();
+            
+            // Remove that specific dropdown (but preserve search)
+            function removeDropdown() {
+                // Remove the specific dropdown with exact styling
+                document.querySelectorAll('select').forEach(el => {
+                    const style = el.getAttribute('style') || '';
+                    if (style.includes('padding: 0.5rem') && 
+                        style.includes('border: 2px solid') && 
+                        style.includes('border-radius: 20px')) {
+                        el.remove();
+                    }
+                });
+                
+                // Also remove any select that contains "جميع الفئات"
+                document.querySelectorAll('select option').forEach(option => {
+                    if (option.textContent.includes('جميع الفئات')) {
+                        option.closest('select').remove();
+                    }
+                });
+                
+                // Remove Google Translate elements
+                document.querySelectorAll('.goog-te-combo, .skiptranslate, [id*="google_translate"]').forEach(el => el.remove());
+            }
+            
+            // Run immediately and on intervals (less frequent)
+            removeDropdown();
+            setInterval(removeDropdown, 3000);
+            
+            // Clear all items function
+            window.clearAllItems = function() {
+                if (confirm('هل أنت متأكد من مسح جميع العناصر؟')) {
+                    document.querySelectorAll('.quantity-input').forEach(input => {
+                        input.value = 0;
+                    });
+                    updateOrder();
+                }
+            };
+            
+            // Intersection Observer for menu items animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all menu categories
+            setTimeout(() => {
+                document.querySelectorAll('.menu-category').forEach(category => {
+                    category.style.opacity = '0';
+                    observer.observe(category);
+                });
+            }, 100);
+            
+            // Add micro-bounce to all interactive elements
+            document.querySelectorAll('.quantity-btn, .tab-btn, .whatsapp-btn').forEach(el => {
+                el.classList.add('micro-bounce');
+            });
+            
+            // Enhanced parallax effect
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax-element');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.2);
+                    element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            }
+            
+            window.addEventListener('scroll', updateParallax);
+            
+            // Image Modal Functions
+            window.openImageModal = function(imageSrc, imageAlt) {
+                const modal = document.getElementById('imageModal');
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = imageSrc;
+                modalImage.alt = imageAlt;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            };
+            
+            window.closeImageModal = function() {
+                const modal = document.getElementById('imageModal');
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            };
+            
+            // Add click handlers to all product images
+            document.querySelectorAll('.product-image').forEach(img => {
+                img.addEventListener('click', function() {
+                    openImageModal(this.src, this.alt);
+                });
+            });
+            
+            // Close modal on background click
+            document.getElementById('imageModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeImageModal();
+                }
+            });
+            
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.placeholder = 'ابحث عن صنف...';
+            searchInput.style.width = '100%';
+            searchInput.style.maxWidth = '300px';
+            searchInput.style.margin = '1rem auto';
+            searchInput.style.padding = '0.5rem';
+            searchInput.style.border = '2px solid var(--border-light)';
+            searchInput.style.borderRadius = '20px';
+            document.querySelector('.menu-tabs').appendChild(searchInput);
+
+            searchInput.addEventListener('input', function () {
+                const term = this.value.toLowerCase();
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    const name = item.querySelector('.item-name').textContent.toLowerCase();
+                    item.style.display = name.includes(term) ? 'flex' : 'none';
+                });
+            });
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const menuSections = document.querySelectorAll('.menu-section');
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const orderSummary = document.getElementById('orderSummary');
+            const orderItems = document.getElementById('orderItems');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const closeOrder = document.getElementById('closeOrder');
+            
+            let order = [];
+            let totalItems = 0;
+            
+            // Create order badge
+            function createOrderBadge() {
+                const badge = document.createElement('div');
+                badge.id = 'orderBadge';
+                badge.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--gradient-primary);
+                    color: white;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+                    cursor: pointer;
+                    transform: scale(0);
+                    transition: all 0.3s ease;
+                    z-index: 1500;
+                `;
+                badge.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+                badge.onclick = () => {
+                    if (totalItems > 0) {
+                        orderSummary.classList.toggle('show');
+                    }
+                };
+                document.body.appendChild(badge);
+                return badge;
+            };
+            
+            const orderBadge = createOrderBadge();
+            
+            // Update sticky cart function
+            function updateStickyCart() {
+                const stickyCart = document.getElementById('stickyCart');
+                const cartCount = document.getElementById('cartCount');
+                
+                if (stickyCart && totalItems > 0) {
+                    stickyCart.classList.add('show');
+                    if (cartCount) cartCount.textContent = totalItems;
+                } else if (stickyCart) {
+                    stickyCart.classList.remove('show');
+                }
+            }
+            
+            // Add sticky cart click handler only if element exists
+            const stickyCartElement = document.getElementById('stickyCart');
+            if (stickyCartElement) {
+                stickyCartElement.addEventListener('click', function() {
+                    orderSummary.classList.add('show');
+                });
+            }
+            
+            // Add item count badge
+            function updateOrderBadge() {
+                const countBadge = document.getElementById('itemCount') || document.createElement('span');
+                countBadge.id = 'itemCount';
+                countBadge.style.cssText = `
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background: #e74c3c;
+                    color: white;
+                    border-radius: 50%;
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                `;
+                countBadge.textContent = totalItems;
+                
+                if (totalItems > 0) {
+                    orderBadge.style.transform = 'scale(1)';
+                    if (!countBadge.parentNode) {
+                        orderBadge.appendChild(countBadge);
+                    }
+                } else {
+                    orderBadge.style.transform = 'scale(0)';
+                    if (countBadge.parentNode) {
+                        countBadge.remove();
+                    }
+                }
+            }
+            
+            // Tab switching functionality
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    menuSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === tabId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Enhanced quantity controls with animations
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    const currentValue = parseInt(input.value);
+                    
+                    // Add click animation
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 100);
+                    }, 100);
+                    
+                    if (this.classList.contains('plus')) {
+                        input.value = currentValue + 1;
+                        // Show add animation
+                        showItemAnimation(this.closest('.menu-item'), 'added');
+                    } else {
+                        if (currentValue > 0) {
+                            input.value = currentValue - 1;
+                            // Show remove animation
+                            showItemAnimation(this.closest('.menu-item'), 'removed');
+                        }
+                    }
+                    updateOrder();
+                });
+            });
+            
+            // Item animation feedback
+            function showItemAnimation(menuItem, action) {
+                const feedback = document.createElement('div');
+                feedback.style.cssText = `
+                    position: absolute;
+                    right: 20px;
+                    background: ${action === 'added' ? '#27ae60' : '#e74c3c'};
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 20px;
+                    font-size: 0.8rem;
+                    z-index: 1000;
+                    animation: slideInOut 2s forwards;
+                    pointer-events: none;
+                `;
+                feedback.textContent = action === 'added' ? 'تم الإضافة ✓' : 'تم الحذف ✗';
+                
+                // Add animation keyframes
+                if (!document.getElementById('feedbackAnimation')) {
+                    const style = document.createElement('style');
+                    style.id = 'feedbackAnimation';
+                    style.textContent = `
+                        @keyframes slideInOut {
+                            0% { opacity: 0; transform: translateX(50px); }
+                            20% { opacity: 1; transform: translateX(0); }
+                            80% { opacity: 1; transform: translateX(0); }
+                            100% { opacity: 0; transform: translateX(-50px); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                menuItem.style.position = 'relative';
+                menuItem.appendChild(feedback);
+                
+                setTimeout(() => {
+                    if (feedback.parentNode) {
+                        feedback.remove();
+                    }
+                }, 2000);
+            }
+            
+            // Input change events
+            quantityInputs.forEach(input => {
+                input.addEventListener('change', updateOrder);
+            });
+            
+            // Close order summary
+            closeOrder.addEventListener('click', function() {
+                orderSummary.classList.remove('show');
+            });
+            
+            // Enhanced update order function
+            function updateOrder() {
+                order = [];
+                totalItems = 0;
+                
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    const name = item.querySelector('.item-name').textContent;
+                    const quantity = parseInt(item.querySelector('.quantity-input').value);
+                    
+                    if (quantity > 0) {
+                        order.push({ name, quantity });
+                        totalItems += quantity;
+                    }
+                });
+                
+                // Update badge and sticky cart
+                updateOrderBadge();
+                updateStickyCart();
+                
+                // Update order summary UI with animations
+                if (order.length > 0) {
+                    orderItems.innerHTML = '';
+                    
+                    // Add total header
+                    const totalHeader = document.createElement('div');
+                    totalHeader.style.cssText = `
+                        display: flex;
+                        justify-content: space-between;
+                        font-weight: bold;
+                        color: var(--primary-dark);
+                        border-bottom: 2px solid var(--primary-gold);
+                        padding-bottom: 0.5rem;
+                        margin-bottom: 1rem;
+                    `;
+                    totalHeader.innerHTML = `
+                        <span>إجمالي الأصناف: ${order.length}</span>
+                        <span>إجمالي الكمية: ${totalItems}</span>
+                    `;
+                    orderItems.appendChild(totalHeader);
+                    
+                    order.forEach((item, index) => {
+                        const orderItem = document.createElement('div');
+                        orderItem.className = 'order-item';
+                        orderItem.style.cssText = `
+                            animation: slideInLeft 0.3s ease forwards;
+                            animation-delay: ${index * 0.1}s;
+                            opacity: 0;
+                        `;
+                        orderItem.innerHTML = `
+                            <span style="flex-grow: 1;">${item.name}</span>
+                            <span style="background: var(--gradient-primary); color: white; padding: 0.2rem 0.8rem; border-radius: 15px; font-weight: bold;">${item.quantity}</span>
+                        `;
+                        orderItems.appendChild(orderItem);
+                    });
+                    
+                    // Add slide animation if not exists
+                    if (!document.getElementById('slideAnimation')) {
+                        const style = document.createElement('style');
+                        style.id = 'slideAnimation';
+                        style.textContent = `
+                            @keyframes slideInLeft {
+                                from {
+                                    opacity: 0;
+                                    transform: translateX(-20px);
+                                }
+                                to {
+                                    opacity: 1;
+                                    transform: translateX(0);
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                } else {
+                    orderItems.innerHTML = '<div class="no-items">لا توجد عناصر في الطلب</div>';
+                }
+            }
+            
+            // WhatsApp order button
+            whatsappBtn.addEventListener('click', function() {
+                if (order.length === 0) return;
+                
+                const phoneNumber = "+905431075020"; // Replace with your number
+                let message = "السلام عليكم، أريد طلب التالي من مطعم شاي كرك:\n\n";
+                
+                order.forEach(item => {
+                    message += `- ${item.name} × ${item.quantity}\n`;
+                });
+                
+                message += "\nشكراً جزيلاً";
+                
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+            });
+            
+            // Add quick action buttons to each menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const quickAdd = document.createElement('button');
+                quickAdd.innerHTML = '+1';
+                quickAdd.style.cssText = `
+                    background: var(--gradient-primary);
+                    color: white;
+                    border: none;
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 15px;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-left: 0.5rem;
+                    transition: all 0.2s ease;
+                `;
+                quickAdd.addEventListener('click', () => {
+                    const input = item.querySelector('.quantity-input');
+                    input.value = parseInt(input.value) + 1;
+                    updateOrder();
+                    showItemAnimation(item, 'added');
+                });
+                item.querySelector('.quantity-control').insertBefore(quickAdd, item.querySelector('.quantity-control').firstChild);
+            });
+            
+            // Add clear all button to order summary
+            const clearAllBtn = document.createElement('button');
+            clearAllBtn.innerHTML = 'مسح الكل <i class="fas fa-trash"></i>';
+            clearAllBtn.style.cssText = `
+                background: #e74c3c;
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                width: 100%;
+                transition: all 0.3s ease;
+            `;
+            clearAllBtn.addEventListener('click', () => {
+                if (confirm('هل أنت متأكد من مسح جميع العناصر؟')) {
+                    document.querySelectorAll('.quantity-input').forEach(input => {
+                        input.value = 0;
+                    });
+                    updateOrder();
+                }
+            });
+            orderSummary.insertBefore(clearAllBtn, whatsappBtn);
+            
+            // Enhanced search with category filtering
+            const categoryFilter = document.createElement('select');
+            categoryFilter.style.cssText = `
+                padding: 0.5rem;
+                border: 2px solid var(--border-light);
+                border-radius: 20px;
+                margin: 0.5rem;
+                background: white;
+            `;
+            categoryFilter.innerHTML = `
+                <option value="">جميع الفئات</option>
+                <option value="شاي">شاي</option>
+                <option value="قهوة">قهوة</option>
+                <option value="شباتي">سندويشات</option>
+                <option value="عصير">عصائر</option>
+                <option value="حلويات">حلويات</option>
+            `;
+            document.querySelector('.menu-tabs').appendChild(categoryFilter);
+            
+            categoryFilter.addEventListener('change', function() {
+                const category = this.value.toLowerCase();
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    const name = item.querySelector('.item-name').textContent.toLowerCase();
+                    item.style.display = !category || name.includes(category) ? 'flex' : 'none';
+                });
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+                if (e.key === 'Escape') {
+                    orderSummary.classList.remove('show');
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input'));
+                }
+            });
+            
+            // Show order summary when items are added
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('quantity-btn') || 
+                    e.target.classList.contains('quantity-input')) {
+                    if (order.length > 0) {
+                        setTimeout(() => {
+                            if (totalItems > 0 && !orderSummary.classList.contains('show')) {
+                                orderSummary.classList.add('show');
+                            }
+                        }, 500);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
