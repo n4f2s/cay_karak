@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطعم شاي كرك - قائمة الطعام</title>
+    <title>مطعم المدينتين  - قائمة الطعام</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -456,7 +456,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-mug-hot me-2"></i>
-                <span data-translate="restaurant_name">مطعم شاي كرك</span>
+                <span data-translate="restaurant_name">مطعم المدينتين</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -526,10 +526,8 @@
                     <img src="Images/kark-01.png" alt="شاي كرك صغير" onerror="this.src='https://via.placeholder.com/300x200/D4AF37/FFFFFF?text=شاي+كرك'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="small_karak">شاي كرك صغير</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">15 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شاي كرك صغير', 15)">
+                        <div class="card-price">15 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('small_karak', 15)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -542,10 +540,8 @@
                     <img src="Images/kark-01.png" alt="شاي كرك وسط" onerror="this.src='https://via.placeholder.com/300x200/D4AF37/FFFFFF?text=شاي+كرك+وسط'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="medium_karak">شاي كرك وسط</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">25 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شاي كرك وسط', 25)">
+                        <div class="card-price">25 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('medium_karak', 25)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -558,10 +554,8 @@
                     <img src="Images/kark-01.png" alt="شاي كرك كبير" onerror="this.src='https://via.placeholder.com/300x200/D4AF37/FFFFFF?text=شاي+كرك+كبير'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="large_karak">شاي كرك كبير</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">35 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شاي كرك كبير', 35)">
+                        <div class="card-price">35 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('large_karak', 35)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -574,9 +568,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (2).png" alt="براد كرك" onerror="this.src='https://via.placeholder.com/300x200/D4AF37/FFFFFF?text=براد+كرك'">
                     <div class="card-body">
-                        <h5 class="card-title">براد كرك</h5>
+                        <h5 class="card-title" data-translate="brad_karak">براد كرك</h5>
                         <div class="card-price">120 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('براد كرك', 120)">
+                        <button class="add-to-cart-btn" onclick="addToCart('brad_karak', 120)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -588,9 +582,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (5).png" alt="براد قهوة عربية" onerror="this.src='https://via.placeholder.com/300x200/8B4513/FFFFFF?text=براد+قهوة+عربية'">
                     <div class="card-body">
-                        <h5 class="card-title">براد قهوة عربية 1.5</h5>
+                        <h5 class="card-title" data-translate="brad_arabic_coffee">براد قهوة عربية 1.5</h5>
                         <div class="card-price">135 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('براد قهوة عربية 1.5', 135)">
+                        <button class="add-to-cart-btn" onclick="addToCart('brad_arabic_coffee', 135)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -602,9 +596,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (15).png" alt="نسكافيه" onerror="this.src='https://via.placeholder.com/300x200/8B4513/FFFFFF?text=نسكافيه'">
                     <div class="card-body">
-                        <h5 class="card-title">نسكافيه</h5>
+                        <h5 class="card-title" data-translate="nescafe">نسكافيه</h5>
                         <div class="card-price">18 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('نسكافيه', 18)">
+                        <button class="add-to-cart-btn" onclick="addToCart('nescafe', 18)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -616,9 +610,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (16).png" alt="هوت شوكليت كبير" onerror="this.src='https://via.placeholder.com/300x200/8B4513/FFFFFF?text=هوت+شوكليت+كبير'">
                     <div class="card-body">
-                        <h5 class="card-title">هوت شوكليت كبير</h5>
+                        <h5 class="card-title" data-translate="hot_chocolate">هوت شوكليت كبير</h5>
                         <div class="card-price">25 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('هوت شوكليت كبير', 25)">
+                        <button class="add-to-cart-btn" onclick="addToCart('hot_chocolate', 25)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -632,10 +626,8 @@
                     <img src="Images/kark-01 - Copy (32).png" alt="عصير برتقال" onerror="this.src='https://via.placeholder.com/300x200/FFA500/FFFFFF?text=عصير+برتقال'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="orange_juice">عصير برتقال طازج</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">35 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('عصير برتقال طازج', 35)">
+                        <div class="card-price">35 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('orange_juice', 35)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -647,9 +639,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (26).png" alt="عصير مانجو" onerror="this.src='https://via.placeholder.com/300x200/FF6347/FFFFFF?text=عصير+مانجو'">
                     <div class="card-body">
-                        <h5 class="card-title">عصير مانجو طبيعي</h5>
+                        <h5 class="card-title" data-translate="mango_juice">عصير مانجو طبيعي</h5>
                         <div class="card-price">45 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('عصير مانجو طبيعي', 45)">
+                        <button class="add-to-cart-btn" onclick="addToCart('mango_juice', 45)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -661,9 +653,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (25).png" alt="ماء" onerror="this.src='https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=ماء'">
                     <div class="card-body">
-                        <h5 class="card-title">ماء</h5>
+                        <h5 class="card-title" data-translate="water">ماء</h5>
                         <div class="card-price">6 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('ماء', 6)">
+                        <button class="add-to-cart-btn" onclick="addToCart('water', 6)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -675,9 +667,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (27).png" alt="ليموناتا" onerror="this.src='https://via.placeholder.com/300x200/FFFF00/000000?text=ليموناتا'">
                     <div class="card-body">
-                        <h5 class="card-title">ليموناتا</h5>
+                        <h5 class="card-title" data-translate="lemonade">ليموناتا</h5>
                         <div class="card-price">25 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('ليموناتا', 25)">
+                        <button class="add-to-cart-btn" onclick="addToCart('lemonade', 25)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -691,10 +683,8 @@
                     <img src="Images/kark-01 - Copy.png" alt="شباتي بيض" onerror="this.src='https://via.placeholder.com/300x200/32CD32/FFFFFF?text=شباتي+بيض'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="egg_chapati">شباتي بيض</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">25 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شباتي بيض', 25)">
+                        <div class="card-price">25 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('egg_chapati', 25)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -706,9 +696,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (40).png" alt="شباتي جبنة" onerror="this.src='https://via.placeholder.com/300x200/FFD700/FFFFFF?text=شباتي+جبنة'">
                     <div class="card-body">
-                        <h5 class="card-title">شباتي جبنة</h5>
+                        <h5 class="card-title" data-translate="cheese_chapati">شباتي جبنة</h5>
                         <div class="card-price">30 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شباتي جبنة', 30)">
+                        <button class="add-to-cart-btn" onclick="addToCart('cheese_chapati', 30)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -720,9 +710,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (43).png" alt="شباتي فاهيتا" onerror="this.src='https://via.placeholder.com/300x200/FF4500/FFFFFF?text=شباتي+فاهيتا'">
                     <div class="card-body">
-                        <h5 class="card-title">شباتي فاهيتا</h5>
+                        <h5 class="card-title" data-translate="fajita_chapati">شباتي فاهيتا</h5>
                         <div class="card-price">35 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شباتي فاهيتا', 35)">
+                        <button class="add-to-cart-btn" onclick="addToCart('fajita_chapati', 35)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -734,9 +724,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (52).png" alt="شباتي نوتيلا" onerror="this.src='https://via.placeholder.com/300x200/8B4513/FFFFFF?text=شباتي+نوتيلا'">
                     <div class="card-body">
-                        <h5 class="card-title">شباتي نوتيلا</h5>
+                        <h5 class="card-title" data-translate="nutella_chapati">شباتي نوتيلا</h5>
                         <div class="card-price">30 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('شباتي نوتيلا', 30)">
+                        <button class="add-to-cart-btn" onclick="addToCart('nutella_chapati', 30)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -750,10 +740,8 @@
                     <img src="Images/kark-01 - Copy (54).png" alt="كنافة" onerror="this.src='https://via.placeholder.com/300x200/8B4513/FFFFFF?text=كنافة'">
                     <div class="card-body">
                         <h5 class="card-title" data-translate="kanafeh">كنافة</h5>
-                        <div class="card-price">
-                            <span data-translate="currency">75 TL</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart('كنافة', 75)">
+                        <div class="card-price">75 TL</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('kanafeh', 75)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -765,9 +753,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (58).png" alt="ليالي لبنان" onerror="this.src='https://via.placeholder.com/300x200/DC143C/FFFFFF?text=ليالي+لبنان'">
                     <div class="card-body">
-                        <h5 class="card-title">ليالي لبنان</h5>
+                        <h5 class="card-title" data-translate="layali_lebanon">ليالي لبنان</h5>
                         <div class="card-price">60 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('ليالي لبنان', 60)">
+                        <button class="add-to-cart-btn" onclick="addToCart('layali_lebanon', 60)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -779,9 +767,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (57).png" alt="كرات شكلاته" onerror="this.src='https://via.placeholder.com/300x200/D2691E/FFFFFF?text=كرات+شكلاته'">
                     <div class="card-body">
-                        <h5 class="card-title">كرات شكلاته</h5>
+                        <h5 class="card-title" data-translate="chocolate_balls">كرات شكلاته</h5>
                         <div class="card-price">45 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('كرات شكلاته', 45)">
+                        <button class="add-to-cart-btn" onclick="addToCart('chocolate_balls', 45)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -793,9 +781,9 @@
                 <div class="menu-card">
                     <img src="Images/kark-01 - Copy (60).png" alt="تمر" onerror="this.src='https://via.placeholder.com/300x200/D2B48C/FFFFFF?text=تمر'">
                     <div class="card-body">
-                        <h5 class="card-title">نصف كيلو تمر</h5>
+                        <h5 class="card-title" data-translate="half_kilo_dates">نصف كيلو تمر</h5>
                         <div class="card-price">60 TL</div>
-                        <button class="add-to-cart-btn" onclick="addToCart('نصف كيلو تمر', 60)">
+                        <button class="add-to-cart-btn" onclick="addToCart('half_kilo_dates', 60)">
                             <i class="fas fa-cart-plus me-2"></i>
                             <span data-translate="add_to_cart">أضف إلى السلة</span>
                         </button>
@@ -844,7 +832,7 @@
         // Translations
         const translations = {
             ar: {
-                restaurant_name: "مطعم شاي كرك",
+                restaurant_name: "مطعم المدينتين",
                 hot_drinks: "المشروبات الساخنة",
                 cold_drinks: "المشروبات الباردة",
                 sandwiches: "السندويشات",
@@ -860,10 +848,23 @@
                 large_karak: "شاي كرك كبير",
                 orange_juice: "عصير برتقال طازج",
                 egg_chapati: "شباتي بيض",
-                kanafeh: "كنافة"
+                kanafeh: "كنافة",
+                brad_karak: "براد كرك",
+                brad_arabic_coffee: "براد قهوة عربية 1.5",
+                nescafe: "نسكافيه",
+                hot_chocolate: "هوت شوكليت كبير",
+                mango_juice: "عصير مانجو طبيعي",
+                water: "ماء",
+                lemonade: "ليموناتا",
+                cheese_chapati: "شباتي جبنة",
+                fajita_chapati: "شباتي فاهيتا",
+                nutella_chapati: "شباتي نوتيلا",
+                layali_lebanon: "ليالي لبنان",
+                chocolate_balls: "كرات شكلاته",
+                half_kilo_dates: "نصف كيلو تمر"
             },
             en: {
-                restaurant_name: "Karak Tea Restaurant",
+                restaurant_name: "Al Madinatyn Restaurant",
                 hot_drinks: "Hot Drinks",
                 cold_drinks: "Cold Drinks",
                 sandwiches: "Sandwiches",
@@ -879,10 +880,23 @@
                 large_karak: "Large Karak Tea",
                 orange_juice: "Fresh Orange Juice",
                 egg_chapati: "Egg Chapati",
-                kanafeh: "Kanafeh"
+                kanafeh: "Kanafeh",
+                brad_karak: "Karak Pot",
+                brad_arabic_coffee: "Arabic Coffee Pot 1.5",
+                nescafe: "Nescafe",
+                hot_chocolate: "Large Hot Chocolate",
+                mango_juice: "Natural Mango Juice",
+                water: "Water",
+                lemonade: "Lemonade",
+                cheese_chapati: "Cheese Chapati",
+                fajita_chapati: "Fajita Chapati",
+                nutella_chapati: "Nutella Chapati",
+                layali_lebanon: "Layali Lebanon",
+                chocolate_balls: "Chocolate Balls",
+                half_kilo_dates: "Half Kilo Dates"
             },
             tr: {
-                restaurant_name: "Karak Çay Restoranı",
+                restaurant_name: "Al Madinatyn Restoranı",
                 hot_drinks: "Sıcak İçecekler",
                 cold_drinks: "Soğuk İçecekler",
                 sandwiches: "Sandviçler",
@@ -898,7 +912,20 @@
                 large_karak: "Büyük Karak Çayı",
                 orange_juice: "Taze Portakal Suyu",
                 egg_chapati: "Yumurtalı Chapati",
-                kanafeh: "Kanafeh"
+                kanafeh: "Kanafeh",
+                brad_karak: "Karak Demliği",
+                brad_arabic_coffee: "Arap Kahvesi Demliği 1.5",
+                nescafe: "Nescafe",
+                hot_chocolate: "Büyük Sıcak Çikolata",
+                mango_juice: "Doğal Mango Suyu",
+                water: "Su",
+                lemonade: "Limonata",
+                cheese_chapati: "Peynirli Chapati",
+                fajita_chapati: "Fajita Chapati",
+                nutella_chapati: "Nutella Chapati",
+                layali_lebanon: "Layali Lebanon",
+                chocolate_balls: "Çikolata Topları",
+                half_kilo_dates: "Yarım Kilo Hurma"
             }
         };
 
@@ -1002,9 +1029,10 @@
             cart.forEach((item, index) => {
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
+                const translatedName = translations[currentLanguage][item.name] || item.name;
                 cartItem.innerHTML = `
                     <div>
-                        <h6>${item.name}</h6>
+                        <h6>${translatedName}</h6>
                         <small class="text-muted">${item.price} ${currencyText} × ${item.quantity}</small>
                     </div>
                     <div class="d-flex align-items-center">
